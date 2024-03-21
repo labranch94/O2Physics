@@ -1034,6 +1034,12 @@ void o2::aod::dqhistograms::DefineHistograms(HistogramManager* hm, const char* h
       hm->AddHistogram(histClass, "hCostheta_Jpsi_Dihadron", "", false, 100, -1.0, 1.0, VarManager::kCosthetaDileptonDitrack);
       hm->AddHistogram(histClass, "hPtDilepton_PtDihadron", "", false, 200, 0, 20, VarManager::kPairPt, 100, 0, 10, VarManager::kDitrackPt);
       hm->AddHistogram(histClass, "hPtDilepton_MassDihadron", "", false, 200, 0, 20, VarManager::kPairPt, 100, 3.0, 5.0, VarManager::kDitrackMass);
+      hm->AddHistogram(histClass, "hQ_X3872", "", false, 100, 0.0, 2.0, VarManager::kQ);
+      hm->AddHistogram(histClass, "hDeltaR1_X3872", "", false, 200, 0.0, 4.0, VarManager::kDeltaR1);
+      hm->AddHistogram(histClass, "hDeltaR2_X3872", "", false, 200, 0.0, 4.0, VarManager::kDeltaR2);
+      hm->AddHistogram(histClass, "hMass_Q_X3872", "", false, 1000, 3.0, 5.0, VarManager::kQuadMass, 100, 0.0, 2.0, VarManager::kQ);
+      hm->AddHistogram(histClass, "hMass_DeltaR1_X3872", "", false, 1000, 3.0, 5.0, VarManager::kQuadMass, 200, 0.0, 4.0, VarManager::kDeltaR1);
+      hm->AddHistogram(histClass, "hMass_DeltaR2_X3872", "", false, 1000, 3.0, 5.0, VarManager::kQuadMass, 200, 0.0, 4.0, VarManager::kDeltaR2);
     }
   }
 }
