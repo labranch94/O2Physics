@@ -1574,13 +1574,13 @@ struct AnalysisDileptonHadron {
 struct AnalysisDileptonTrackTrack {
   OutputObj<THashList> fOutputList{"output"};
 
-  Configurable<std::string> fConfigTrackCuts{"cfgTrackCuts", "jpsiO2MCdebugCuts2", "Comma separated list of barrel track cuts"}; // used for select the tracks from SelectedTracks
-  Configurable<std::string> fConfigDileptonCut{"cfgDiLeptonCut", "pairJpsi", "Dilepton cut"};
-  Configurable<std::string> fConfigDitrackCut{"cfgDiTrackCut", "pairNoCut", "Track-Track cut"};
-  Configurable<std::string> fConfigQuadrupletCut{"cfgQuadrupletCut", "pairNoCut", "Dilepton-Track-Track cut"};
-  Configurable<std::string> fConfigAddDileptonHistogram{"cfgAddDileptonHistogram", "berral", "Comma separated list of histograms"};
-  Configurable<std::string> fConfigAddDitrackHistogram{"cfgAddDitrackHistogram", "berral", "Comma separated list of histograms"};
-  Configurable<std::string> fConfigAddQuadrupletHistogram{"cfgAddQuadrupletHistogram", "XtoJpsipipi", "Comma separated list of histograms"};
+  Configurable<std::string> fConfigTrackCuts{"cfgTrackCuts", "pionPIDCut1", "Comma separated list of barrel track cuts"}; // used for select the tracks from SelectedTracks
+  Configurable<std::string> fConfigDileptonCut{"cfgDiLeptonCut", "pairJpsi2", "Dilepton cut"};
+  Configurable<std::string> fConfigDitrackCut{"cfgDiTrackCut", "DipionPairCut1", "Track-Track cut"};
+  Configurable<std::string> fConfigQuadrupletCut{"cfgQuadrupletCut", "pairX3872Cut1", "Dilepton-Track-Track cut"};
+  Configurable<std::string> fConfigAddDileptonHistogram{"cfgAddDileptonHistogram", "barrel", "Comma separated list of histograms"};
+  Configurable<std::string> fConfigAddDitrackHistogram{"cfgAddDitrackHistogram", "barrel", "Comma separated list of histograms"};
+  Configurable<std::string> fConfigAddQuadrupletHistogram{"cfgAddQuadrupletHistogram", "xtojpsipipi", "Comma separated list of histograms"};
 
   Filter eventFilter = aod::dqanalysisflags::isEventSelected == 1;
   Filter dileptonFilter = aod::reducedpair::mass > 1.0f && aod::reducedpair::mass < 4.0f;
