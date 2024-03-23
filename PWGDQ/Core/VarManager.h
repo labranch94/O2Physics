@@ -3168,7 +3168,7 @@ void VarManager::FillDileptonTrackTrack(T1 const& dilepton, T2 const& hadron1, T
   values[kQuadEta] = v123.Eta();
   values[kQuadPhi] = v123.Phi();
 
-  if (fgUsedVars[kCosthetaDileptonDitrack] || fgUsedVars[kPairMass] || fgUsedVars[kPairPt] || fgUsedVars[kDitrackPt] || fgUsedVars[kDitrackMass] || fgUsedVars[kQ] || fgUsedVars[kDeltaR1] || fgUsedVars[kDeltaR2]) {
+  if (fgUsedVars[kCosthetaDileptonDitrack] || fgUsedVars[kPairMass] || fgUsedVars[kPairPt] || fgUsedVars[kDitrackPt] || fgUsedVars[kDitrackMass] || fgUsedVars[kQ] || fgUsedVars[kDeltaR1] || fgUsedVars[kDeltaR2] || fgUsedVars[kRap]) {
     ROOT::Math::PtEtaPhiMVector v23 = v2 + v3;
     values[kPairMass] = v1.M();
     values[kPairPt] = v1.Pt();
@@ -3178,6 +3178,7 @@ void VarManager::FillDileptonTrackTrack(T1 const& dilepton, T2 const& hadron1, T
     values[kQ] = v123.M() - v1.M() - v23.M();
     values[kDeltaR1] = sqrt(pow(v1.Eta() - v2.Eta(), 2) + pow(v1.Phi() - v2.Phi(), 2));
     values[kDeltaR2] = sqrt(pow(v1.Eta() - v3.Eta(), 2) + pow(v1.Phi() - v3.Phi(), 2));
+    values[kRap] = v123.Rapidity();
   }
 }
 
