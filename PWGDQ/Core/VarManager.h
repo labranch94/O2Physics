@@ -550,6 +550,7 @@ class VarManager : public TObject
 
     // Dilepton-track-track variables
     kQuadMass,
+    kQuadMassDefaultDilepton,
     kQuadPt,
     kQuadEta,
     kQuadPhi,
@@ -3145,25 +3146,27 @@ void VarManager::FillDileptonTrackTrack(T1 const& dilepton, T2 const& hadron1, T
     values = fgValues;
   }
 
-  double DefaultdileptonMass = 3.096;
+  double defaultDileptonMass = 3.096;
   double hadronMass1 = o2::constants::physics::MassPionCharged;
   double hadronMass2 = o2::constants::physics::MassPionCharged;
   if (candidateType == kXtoJpsiPiPi) {
-    DefaultdileptonMass = 3.096;
+    defaultDileptonMass = 3.096;
     hadronMass1 = o2::constants::physics::MassPionCharged;
     hadronMass2 = o2::constants::physics::MassPionCharged;
   }
   if (candidateType == kChictoJpsiEE) {
-    DefaultdileptonMass = 3.096;
+    defaultDileptonMass = 3.096;
     hadronMass1 = o2::constants::physics::MassElectron;
     hadronMass2 = o2::constants::physics::MassElectron;
   }
 
+  
   ROOT::Math::PtEtaPhiMVector v1(dilepton.pt(), dilepton.eta(), dilepton.phi(), dilepton.mass());
   ROOT::Math::PtEtaPhiMVector v2(hadron1.pt(), hadron1.eta(), hadron1.phi(), hadronMass1);
   ROOT::Math::PtEtaPhiMVector v3(hadron2.pt(), hadron2.eta(), hadron2.phi(), hadronMass2);
   ROOT::Math::PtEtaPhiMVector v123 = v1 + v2 + v3;
   values[kQuadMass] = v123.M();
+  values[kQuadMassDefaultDilepton] = v123.M() - v1.M() + defaultDileptonMass;
   values[kQuadPt] = v123.Pt();
   values[kQuadEta] = v123.Eta();
   values[kQuadPhi] = v123.Phi();
