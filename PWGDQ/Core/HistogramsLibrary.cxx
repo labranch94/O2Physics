@@ -1050,9 +1050,10 @@ void o2::aod::dqhistograms::DefineHistograms(HistogramManager* hm, const char* h
   if (groupStr.Contains("dilepton-dihadron")) {
     if (subGroupStr.EqualTo("xtojpsipipi")) {
       hm->AddHistogram(histClass, "hMass_X3872", "", false, 1000, 3.0, 5.0, VarManager::kQuadMass);
-      hm->AddHistogram(histClass, "hMass_X3872_defaultDileptonMass", "", false, 1000, 3.0, 5.0, VarManager::kQuadDefaultDileptonMass);
+      hm->AddHistogram(histClass, "hMass_defaultDileptonMass_X3872", "", false, 1000, 3.0, 5.0, VarManager::kQuadDefaultDileptonMass);
       hm->AddHistogram(histClass, "hPt_X3872", "", false, 150, 0.0, 15.0, VarManager::kQuadPt);
       hm->AddHistogram(histClass, "hMass_Pt_X3872", "", false, 1000, 3.0, 5.0, VarManager::kQuadMass, 150, 0.0, 15.0, VarManager::kQuadPt);
+      hm->AddHistogram(histClass, "hMass_defaultDileptonMass_Pt_X3872", "", false, 1000, 3.0, 5.0, VarManager::kQuadDefaultDileptonMass, 150, 0.0, 15.0, VarManager::kQuadPt);
       hm->AddHistogram(histClass, "hCostheta_Jpsi_Dihadron", "", false, 100, -1.0, 1.0, VarManager::kCosthetaDileptonDitrack);
 <<<<<<< HEAD
       hm->AddHistogram(histClass, "hPtDilepton_PtDihadron", "", false, 150, 0, 15.0, VarManager::kPairPt, 100, 0, 10, VarManager::kDitrackPt);
@@ -1061,11 +1062,15 @@ void o2::aod::dqhistograms::DefineHistograms(HistogramManager* hm, const char* h
       hm->AddHistogram(histClass, "hDeltaR1_X3872", "", false, 100, 0.0, 10.0, VarManager::kDeltaR1);
       hm->AddHistogram(histClass, "hDeltaR2_X3872", "", false, 100, 0.0, 10.0, VarManager::kDeltaR2);
       hm->AddHistogram(histClass, "hMass_Q_X3872", "", false, 1000, 3.0, 5.0, VarManager::kQuadMass, 150, 0.0, 3.0, VarManager::kQ);
+      hm->AddHistogram(histClass, "hMass_defaultDileptonMass_Q_X3872", "", false, 1000, 3.0, 5.0, VarManager::kQuadDefaultDileptonMass, 150, 0.0, 3.0, VarManager::kQ);
       hm->AddHistogram(histClass, "hMass_DeltaR1_X3872", "", false, 1000, 3.0, 5.0, VarManager::kQuadMass, 100, 0.0, 10.0, VarManager::kDeltaR1);
+      hm->AddHistogram(histClass, "hMass_defaultDileptonMass_DeltaR1_X3872", "", false, 1000, 3.0, 5.0, VarManager::kQuadDefaultDileptonMass, 100, 0.0, 10.0, VarManager::kDeltaR1);
       hm->AddHistogram(histClass, "hMass_DeltaR2_X3872", "", false, 1000, 3.0, 5.0, VarManager::kQuadMass, 100, 0.0, 10.0, VarManager::kDeltaR2);
+      hm->AddHistogram(histClass, "hMass_defaultDileptonMass_DeltaR2_X3872", "", false, 1000, 3.0, 5.0, VarManager::kQuadDefaultDileptonMass, 100, 0.0, 10.0, VarManager::kDeltaR2);
 =======
       hm->AddHistogram(histClass, "hRap_X3872", "", false, 1000, 0.0, 10.0, VarManager::kRap);
       hm->AddHistogram(histClass, "hMass_Rap_X3872", "", false, 1000, 3.0, 5.0, VarManager::kQuadMass, 1000, 0.0, 10.0, VarManager::kRap);
+      hm->AddHistogram(histClass, "hMass_defaultDileptonMass_Rap_X3872", "", false, 1000, 3.0, 5.0, VarManager::kQuadDefaultDileptonMass, 1000, 0.0, 10.0, VarManager::kRap);
 >>>>>>> Add rapidity histogram
     }
   }
