@@ -780,7 +780,7 @@ void VarManager::SetDefaultVarNames()
   fgVariableUnits[kIsSingleGapC] = "";
   fgVariableNames[kQuadMass] = "mass quadruplet";
   fgVariableUnits[kQuadMass] = "GeV/c2";
-  fgVariableNames[kQuadDefaultDiletonMass] = "mass quadruplet (dilepton PDG mass)";
+  fgVariableNames[kQuadDefaultDileptonMass] = "mass quadruplet (dilepton PDG mass)";
   fgVariableUnits[kQuadDefaultDileptonMass] = "GeV/c2";
   fgVariableNames[kQuadPt] = "p_{T}";
   fgVariableUnits[kQuadPt] = "GeV/c";
