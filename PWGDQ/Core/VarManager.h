@@ -550,7 +550,7 @@ class VarManager : public TObject
 
     // Dilepton-track-track variables
     kQuadMass,
-    kQuadMassDefaultDilepton,
+    kQuadDefaultDileptonMass,
     kQuadPt,
     kQuadEta,
     kQuadPhi,
