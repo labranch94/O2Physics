@@ -3170,6 +3170,9 @@ void VarManager::FillDileptonTrackTrack(T1 const& dilepton, T2 const& hadron1, T
   values[kQuadPt] = v123.Pt();
   values[kQuadEta] = v123.Eta();
   values[kQuadPhi] = v123.Phi();
+  
+  values[kTrackDCAxy] = hadron1.dcaXY();
+  values[kTrackDCAz] = hadron1.dcaZ();
 
   if (fgUsedVars[kCosthetaDileptonDitrack] || fgUsedVars[kPairMass] || fgUsedVars[kPairPt] || fgUsedVars[kDitrackPt] || fgUsedVars[kDitrackMass] || fgUsedVars[kQ] || fgUsedVars[kDeltaR1] || fgUsedVars[kDeltaR2] || fgUsedVars[kRap]) {
     ROOT::Math::PtEtaPhiMVector v23 = v2 + v3;
