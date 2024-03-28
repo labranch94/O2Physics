@@ -2444,6 +2444,11 @@ AnalysisCompositeCut* o2::aod::dqcuts::GetCompositeCut(const char* cutName)
     return cut;
   }
 
+  if (!nameStr.compare("pairX3872Cut2")) {
+    cut->AddCut(GetAnalysisCut("pairX3872_2"));
+    return cut;
+  }
+
   if (!nameStr.compare("DipionPairCut1")) {
     cut->AddCut(GetAnalysisCut("DipionMassCut1"));
     return cut;
@@ -4514,6 +4519,13 @@ AnalysisCut* o2::aod::dqcuts::GetAnalysisCut(const char* cutName)
     return cut;
   }
 
+  if (!nameStr.compare("pairX3872_2")) {
+    cut->AddCut(VarManager::kQ, 0.0, 0.3);
+    cut->AddCut(VarManager::kDeltaR1, 0.0, 0.5);
+    cut->AddCut(VarManager::kDeltaR2, 0.0, 0.5);
+    return cut;
+  }
+  
   if (!nameStr.compare("pairPtLow1")) {
     cut->AddCut(VarManager::kPt, 2.0, 1000.0);
     return cut;
