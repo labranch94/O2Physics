@@ -4570,8 +4570,8 @@ AnalysisCut* o2::aod::dqcuts::GetAnalysisCut(const char* cutName)
 
   if (!nameStr.compare("pairX3872_2")) {
     cut->AddCut(VarManager::kQ, 0.0, 0.3);
-    cut->AddCut(VarManager::kDeltaR1, 0.0, 0.5);
-    cut->AddCut(VarManager::kDeltaR2, 0.0, 0.5);
+    cut->AddCut(VarManager::kDeltaR1, 0.0, 0.7);
+    cut->AddCut(VarManager::kDeltaR2, 0.0, 0.7);
     return cut;
   }
   
