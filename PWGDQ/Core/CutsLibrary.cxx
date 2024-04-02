@@ -411,6 +411,12 @@ AnalysisCompositeCut* o2::aod::dqcuts::GetCompositeCut(const char* cutName)
     return cut;
   }
 
+  if (!nameStr.compare("pionPIDCut2")) {
+    cut->AddCut(GetAnalysisCut("pionQualityCut2"));
+    cut->AddCut(GetAnalysisCut("pionPIDnsigma"));
+    return cut;
+  }
+
   if (!nameStr.compare("PIDCalibElectron")) {
     cut->AddCut(GetAnalysisCut("pidcalib_ele"));
     return cut;
@@ -3173,6 +3179,16 @@ AnalysisCut* o2::aod::dqcuts::GetAnalysisCut(const char* cutName)
     return cut;
   }
 
+  if (!nameStr.compare("pionQualityCut2")) {
+    cut->AddCut(VarManager::kPt, 0.4, 1000.0);
+    cut->AddCut(VarManager::kIsITSibAny, 0.5, 1.5);
+    cut->AddCut(VarManager::kTPCncls, 100, 161);
+    cut->AddCut(VarManager::kTrackDCAxy, -0.05, 0.05);
+    cut->AddCut(VarManager::kTrackDCAz, -0.01, 0.01);
+    return cut;
+  }
+
+
   if (!nameStr.compare("pidbasic")) {
     cut->AddCut(VarManager::kEta, -0.9, 0.9);
     cut->AddCut(VarManager::kTPCncls, 60, 161.);
@@ -4570,8 +4586,8 @@ AnalysisCut* o2::aod::dqcuts::GetAnalysisCut(const char* cutName)
 
   if (!nameStr.compare("pairX3872_2")) {
     cut->AddCut(VarManager::kQ, 0.0, 0.3);
-    cut->AddCut(VarManager::kDeltaR1, 0.0, 0.7);
-    cut->AddCut(VarManager::kDeltaR2, 0.0, 0.7);
+    cut->AddCut(VarManager::kDeltaR1, 0.0, 0.5);
+    cut->AddCut(VarManager::kDeltaR2, 0.0, 0.5);
     return cut;
   }
   
