@@ -351,7 +351,7 @@ AnalysisCompositeCut* o2::aod::dqcuts::GetCompositeCut(const char* cutName)
     return cut;
   }
 
-  if (!nameStr.compare("JpsiPWGSkimmedCuts2")) {
+  if (!nameStr.compare("JpsiPWGSkimmedCuts2")) { // please do not remove or modify, this is used for the common Skimmed tree production, (Xiaozhi Bai)
     cut->AddCut(GetAnalysisCut("jpsiKineSkimmed"));
     cut->AddCut(GetAnalysisCut("electronTrackQualitySkimmed"));
     cut->AddCut(GetAnalysisCut("electronPIDLooseSkimmed2"));
@@ -414,6 +414,12 @@ AnalysisCompositeCut* o2::aod::dqcuts::GetCompositeCut(const char* cutName)
 
   if (!nameStr.compare("pionPIDCut1")) {
     cut->AddCut(GetAnalysisCut("pionQualityCut1"));
+    cut->AddCut(GetAnalysisCut("pionPIDnsigma"));
+    return cut;
+  }
+
+  if (!nameStr.compare("pionPIDCut2")) {
+    cut->AddCut(GetAnalysisCut("pionQualityCut2"));
     cut->AddCut(GetAnalysisCut("pionPIDnsigma"));
     return cut;
   }
@@ -2494,6 +2500,11 @@ AnalysisCompositeCut* o2::aod::dqcuts::GetCompositeCut(const char* cutName)
     return cut;
   }
 
+  if (!nameStr.compare("pairX3872Cut2")) {
+    cut->AddCut(GetAnalysisCut("pairX3872_2"));
+    return cut;
+  }
+
   if (!nameStr.compare("DipionPairCut1")) {
     cut->AddCut(GetAnalysisCut("DipionMassCut1"));
     return cut;
@@ -3175,6 +3186,16 @@ AnalysisCut* o2::aod::dqcuts::GetAnalysisCut(const char* cutName)
     return cut;
   }
 
+  if (!nameStr.compare("pionQualityCut2")) {
+    cut->AddCut(VarManager::kPt, 0.4, 1000.0);
+    cut->AddCut(VarManager::kIsITSibAny, 0.5, 1.5);
+    cut->AddCut(VarManager::kTPCncls, 100, 161);
+    cut->AddCut(VarManager::kTrackDCAxy, -0.05, 0.05);
+    cut->AddCut(VarManager::kTrackDCAz, -0.01, 0.01);
+    return cut;
+  }
+
+
   if (!nameStr.compare("pidbasic")) {
     cut->AddCut(VarManager::kEta, -0.9, 0.9);
     cut->AddCut(VarManager::kTPCncls, 60, 161.);
@@ -3313,6 +3334,7 @@ AnalysisCut* o2::aod::dqcuts::GetAnalysisCut(const char* cutName)
     cut->AddCut(VarManager::kTPCnSigmaPr, 2.5, 999);
     return cut;
   }
+ 
   if (!nameStr.compare("electronPIDLooseSkimmed")) {
     cut->AddCut(VarManager::kTPCnSigmaEl, -4.0, 4.0);
     cut->AddCut(VarManager::kTPCnSigmaPi, 2.5, 999);
@@ -3328,6 +3350,7 @@ AnalysisCut* o2::aod::dqcuts::GetAnalysisCut(const char* cutName)
     cut->AddCut(VarManager::kTPCnSigmaPr, 1.5, 999, false, VarManager::kPin, 3.0, 999);
     return cut;
   }
+
   if (!nameStr.compare("jpsi_TPCPID_debug6")) {
     cut->AddCut(VarManager::kTPCnSigmaEl, -2.0, 3.0);
     cut->AddCut(VarManager::kTPCnSigmaPi, 3.0, 999);
@@ -4578,6 +4601,13 @@ AnalysisCut* o2::aod::dqcuts::GetAnalysisCut(const char* cutName)
     return cut;
   }
 
+  if (!nameStr.compare("pairX3872_2")) {
+    cut->AddCut(VarManager::kQ, 0.0, 0.3);
+    cut->AddCut(VarManager::kDeltaR1, 0.0, 0.5);
+    cut->AddCut(VarManager::kDeltaR2, 0.0, 0.5);
+    return cut;
+  }
+  
   if (!nameStr.compare("pairPtLow1")) {
     cut->AddCut(VarManager::kPt, 2.0, 1000.0);
     return cut;
