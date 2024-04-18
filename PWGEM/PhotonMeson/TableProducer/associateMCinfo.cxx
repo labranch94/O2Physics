@@ -78,7 +78,7 @@ struct AssociateMCInfo {
   Preslice<MyEMCClusters> perCollision_emc = aod::skimmedcluster::collisionId;
 
   template <uint8_t system, typename TTracks, typename TPCMs, typename TPCMLegs, typename TPHOSs, typename TEMCs, typename TEMPrimaryElectrons, typename TEMPrimaryMuons>
-  void skimmingMC(MyCollisionsMC const& collisions, aod::BCs const&, aod::McCollisions const&, aod::McParticles const& mcTracks, TTracks const& o2tracks, TPCMs const& v0photons, TPCMLegs const& v0legs, TPHOSs const& phosclusters, TEMCs const& emcclusters, TEMPrimaryElectrons const& emprimaryelectrons, TEMPrimaryMuons const& emprimarymuons)
+  void skimmingMC(MyCollisionsMC const& collisions, aod::BCs const&, aod::McCollisions const&, aod::McParticles const& mcTracks, TTracks const& o2tracks, TPCMs const& v0photons, TPCMLegs const& /*v0legs*/, TPHOSs const& /*phosclusters*/, TEMCs const& emcclusters, TEMPrimaryElectrons const& emprimaryelectrons, TEMPrimaryMuons const& emprimarymuons)
   {
     // temporary variables used for the indexing of the skimmed MC stack
     std::map<uint64_t, int> fNewLabels;
@@ -433,13 +433,15 @@ struct AssociateMCInfo {
         }
       }
 
-      // TODO: Check that the daughter slice in the skimmed table works as expected
-      //       Note that not all daughters from the original table are preserved in the skimmed MC stack
+      // Note that not all daughters from the original table are preserved in the skimmed MC stack
       std::vector<int> daughters;
       if (mctrack.has_daughters()) {
+        // LOGF(info, "daughter range in original MC stack pdg = %d | %d - %d , n dau = %d", mctrack.pdgCode(), mctrack.daughtersIds()[0], mctrack.daughtersIds()[1], mctrack.daughtersIds()[1] -mctrack.daughtersIds()[0] +1);
         for (int d = mctrack.daughtersIds()[0]; d <= mctrack.daughtersIds()[1]; ++d) {
           // TODO: remove this check as soon as issues with MC production are fixed
           if (d < mcTracks.size()) { // protect against bad daughter indices
+            // auto dau_tmp = mcTracks.iteratorAt(d);
+            // LOGF(info, "daughter pdg = %d", dau_tmp.pdgCode());
             if (fNewLabels.find(d) != fNewLabels.end()) {
               daughters.push_back(fNewLabels.find(d)->second);
             }
@@ -449,14 +451,9 @@ struct AssociateMCInfo {
           }
         }
       }
-      int daughterRange[2] = {-1, -1};
-      if (daughters.size() > 0) {
-        daughterRange[0] = daughters[0];
-        daughterRange[1] = daughters[daughters.size() - 1];
-      }
 
       emmcparticles(fEventIdx.find(oldLabel)->second, mctrack.pdgCode(), mctrack.flags(),
-                    mothers, daughterRange,
+                    mothers, daughters,
                     mctrack.px(), mctrack.py(), mctrack.pz(), mctrack.e(),
                     mctrack.vx(), mctrack.vy(), mctrack.vz(), mctrack.vt());
     } // end loop over labels
@@ -529,7 +526,7 @@ struct AssociateMCInfo {
     skimmingMC<sysflag>(collisions, bcs, mccollisions, mcTracks, o2tracks, v0photons, v0legs, phosclusters, emcclusters, emprimaryelectrons, nullptr);
   }
 
-  void processDummy(MyCollisionsMC const& collisions) {}
+  void processDummy(MyCollisionsMC const&) {}
 
   PROCESS_SWITCH(AssociateMCInfo, processMC_PCM, "create em mc event table for PCM", false);
   PROCESS_SWITCH(AssociateMCInfo, processMC_PCM_DalitzEE, "create em mc event table for PCM, DalitzEE", false);
