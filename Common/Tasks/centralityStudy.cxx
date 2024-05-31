@@ -66,7 +66,7 @@ struct centralityStudy {
 
   void init(InitContext&)
   {
-    if (doprocessCollisions) {
+    if (doprocessCollisions || doprocessCollisionsWithCentrality) {
       const AxisSpec axisCollisions{100, -0.5f, 99.5f, "Number of collisions"};
       histos.add("hCollisionSelection", "hCollisionSelection", kTH1D, {{20, -0.5f, +19.5f}});
       histos.get<TH1>(HIST("hCollisionSelection"))->GetXaxis()->SetBinLabel(1, "All collisions");
@@ -193,7 +193,12 @@ struct centralityStudy {
     genericProcessCollision(collision);
   }
 
-  void processCollisionsWithCentrality(soa::Join<aod::Mults, aod::MultsExtra, aod::MultSelections, aod::CentFT0Cs, aod::MultsGlobal, aod::MultNeighs>::iterator const& collision)
+  void processCollisionsWithCentrality(soa::Join<aod::Mults, aod::MultsExtra, aod::MultSelections, aod::CentFT0Cs, aod::MultsGlobal>::iterator const& collision)
+  {
+    genericProcessCollision(collision);
+  }
+
+  void processCollisionsWithCentralityWithNeighbours(soa::Join<aod::Mults, aod::MultsExtra, aod::MultSelections, aod::CentFT0Cs, aod::MultsGlobal, aod::MultNeighs>::iterator const& collision)
   {
     genericProcessCollision(collision);
   }
@@ -217,8 +222,9 @@ struct centralityStudy {
     histos.fill(HIST("hFT0C_BCs"), multbc.multBCFT0C());
   }
 
-  PROCESS_SWITCH(centralityStudy, processCollisions, "per-collision analysis", true);
+  PROCESS_SWITCH(centralityStudy, processCollisions, "per-collision analysis", false);
   PROCESS_SWITCH(centralityStudy, processCollisionsWithCentrality, "per-collision analysis", true);
+  PROCESS_SWITCH(centralityStudy, processCollisionsWithCentralityWithNeighbours, "per-collision analysis", false);
   PROCESS_SWITCH(centralityStudy, processBCs, "per-BC analysis", true);
 };
 
