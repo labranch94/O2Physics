@@ -2830,8 +2830,18 @@ AnalysisCompositeCut* o2::aod::dqcuts::GetCompositeCut(const char* cutName)
     return cut;
   }
 
+  if (!nameStr.compare("pairJpsi3")) {
+    cut->AddCut(GetAnalysisCut("pairJpsi3"));
+    return cut;
+  }
+
   if (!nameStr.compare("pairPsi2S")) {
     cut->AddCut(GetAnalysisCut("pairPsi2S"));
+    return cut;
+  }
+
+  if (!nameStr.compare("pairPsi2S2")) {
+    cut->AddCut(GetAnalysisCut("pairPsi2S2"));
     return cut;
   }
 
@@ -2852,6 +2862,11 @@ AnalysisCompositeCut* o2::aod::dqcuts::GetCompositeCut(const char* cutName)
 
   if (!nameStr.compare("DipionPairCut1")) {
     cut->AddCut(GetAnalysisCut("DipionMassCut1"));
+    return cut;
+  }
+
+  if (!nameStr.compare("DipionPairCut2")) {
+    cut->AddCut(GetAnalysisCut("DipionMassCut2"));
     return cut;
   }
 
@@ -3662,11 +3677,14 @@ AnalysisCut* o2::aod::dqcuts::GetAnalysisCut(const char* cutName)
   }
 
   if (!nameStr.compare("pionQualityCut2")) {
-    cut->AddCut(VarManager::kPt, 0.4, 1000.0);
+    cut->AddCut(VarManager::kPt, 0.5, 1000.0);
     cut->AddCut(VarManager::kIsITSibAny, 0.5, 1.5);
+    cut->AddCut(VarManager::kITSncls, 3.5, 7.5);
     cut->AddCut(VarManager::kTPCncls, 100, 161);
+    cut->AddCut(VarManager::kTPCchi2, 0.0, 4.0);
     cut->AddCut(VarManager::kTrackDCAxy, -0.05, 0.05);
-    cut->AddCut(VarManager::kTrackDCAz, -0.01, 0.01);
+    cut->AddCut(VarManager::kTrackDCAz, -0.1, 0.1);
+    cut->AddCut(VarManager::kEta, -0.9, 0.9);
     return cut;
   }
 
@@ -4336,7 +4354,7 @@ AnalysisCut* o2::aod::dqcuts::GetAnalysisCut(const char* cutName)
   }
 
   if (!nameStr.compare("pionPIDnsigma")) {
-    cut->AddCut(VarManager::kTPCnSigmaPi, -3.0, 3.0);
+    cut->AddCut(VarManager::kTPCnSigmaPi, -2.5, 2.5);
     return cut;
   }
 
@@ -4973,6 +4991,11 @@ AnalysisCut* o2::aod::dqcuts::GetAnalysisCut(const char* cutName)
     return cut;
   }
 
+  if (!nameStr.compare("DipionMassCut2")) {
+    cut->AddCut(VarManager::kMass, 0.5, 0.8);
+    return cut;
+  }
+
   if (!nameStr.compare("pairMassLow1")) {
     cut->AddCut(VarManager::kMass, 1.0, 1000.0);
     return cut;
@@ -5073,8 +5096,20 @@ AnalysisCut* o2::aod::dqcuts::GetAnalysisCut(const char* cutName)
     return cut;
   }
 
+  if (!nameStr.compare("pairJpsi3")) {
+    cut->AddCut(VarManager::kMass, 2.9, 3.3);
+    cut->AddCut(VarManager::kPt, 5.0, 1000);
+    return cut;
+  }
+
   if (!nameStr.compare("pairPsi2S")) {
     cut->AddCut(VarManager::kMass, 3.4, 3.9);
+    return cut;
+  }
+
+  if (!nameStr.compare("pairPsi2S2")) {
+    cut->AddCut(VarManager::kMass, 3.0, 4.0);
+    cut->AddCut(VarManager::kPt, 10.0, 15.0);
     return cut;
   }
 
@@ -5092,6 +5127,7 @@ AnalysisCut* o2::aod::dqcuts::GetAnalysisCut(const char* cutName)
     cut->AddCut(VarManager::kQ, 0.0, 0.3);
     cut->AddCut(VarManager::kDeltaR1, 0.0, 0.5);
     cut->AddCut(VarManager::kDeltaR2, 0.0, 0.5);
+    cut->AddCut(VarManager::kQuadPt, 10.0, 15.0);
     return cut;
   }
   
