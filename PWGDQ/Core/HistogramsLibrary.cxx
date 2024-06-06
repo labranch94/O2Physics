@@ -718,8 +718,8 @@ void o2::aod::dqhistograms::DefineHistograms(HistogramManager* hm, const char* h
 
   if (!groupStr.CompareTo("pair")) {
     if (subGroupStr.Contains("barrel")) {
-      hm->AddHistogram(histClass, "Mass", "", false, 500, 0.0, 5.0, VarManager::kMass);
-      hm->AddHistogram(histClass, "Mass_HighRange", "", false, 375, 0.0, 15.0, VarManager::kMass);
+      hm->AddHistogram(histClass, "Mass", "", false, 1000, 0.0, 5.0, VarManager::kMass);
+      hm->AddHistogram(histClass, "Mass_HighRange", "", false, 1000, 0.0, 15.0, VarManager::kMass);
       hm->AddHistogram(histClass, "Pt", "", false, 2000, 0.0, 20., VarManager::kPt);
       hm->AddHistogram(histClass, "Mass_Pt", "", false, 125, 0.0, 5.0, VarManager::kMass, 40, 0.0, 20.0, VarManager::kPt);
       hm->AddHistogram(histClass, "Eta_Pt", "", false, 40, -2.0, 2.0, VarManager::kEta, 40, 0.0, 20.0, VarManager::kPt);
@@ -1220,8 +1220,8 @@ void o2::aod::dqhistograms::DefineHistograms(HistogramManager* hm, const char* h
   }
   if (!groupStr.CompareTo("dilepton-dihadron")) {
     if (subGroupStr.EqualTo("xtojpsipipi")) {
-      hm->AddHistogram(histClass, "hMass_X3872", "", false, 100, 3.0, 5.0, VarManager::kQuadMass);
-      hm->AddHistogram(histClass, "hMass_defaultDileptonMass_X3872", "", false, 100, 3.0, 5.0, VarManager::kQuadDefaultDileptonMass);
+      hm->AddHistogram(histClass, "hMass_X3872", "", false, 1000, 3.0, 5.0, VarManager::kQuadMass);
+      hm->AddHistogram(histClass, "hMass_defaultDileptonMass_X3872", "", false, 1000, 3.0, 5.0, VarManager::kQuadDefaultDileptonMass);
       hm->AddHistogram(histClass, "hPt_X3872", "", false, 150, 0.0, 15.0, VarManager::kQuadPt);
       hm->AddHistogram(histClass, "hMass_Pt_X3872", "", false, 100, 3.0, 5.0, VarManager::kQuadMass, 150, 0.0, 15.0, VarManager::kQuadPt);
       hm->AddHistogram(histClass, "hMass_defaultDileptonMass_Pt_X3872", "", false, 100, 3.0, 5.0, VarManager::kQuadDefaultDileptonMass, 150, 0.0, 15.0, VarManager::kQuadPt);
